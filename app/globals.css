@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --gold-gradient: linear-gradient(45deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 80ms !important;
+      transition-duration: 80ms !important;
+    }
+  }
+
+  body {
+    @apply bg-brg-950 text-silver-100 antialiased;
+  }
+}
+
+@layer components {
+  .gold-foil {
+    background: var(--gold-gradient);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 8s linear infinite;
+  }
+
+  .glass-card {
+    @apply relative overflow-hidden rounded-xl border border-accent-gold/20;
+    @apply bg-gradient-to-br from-charcoal-850/95 to-charcoal-900/95;
+    @apply backdrop-blur-md shadow-lg;
+    @apply before:absolute before:inset-0;
+    @apply before:bg-gradient-to-br before:from-accent-gold/10 before:to-transparent;
+    @apply before:opacity-0 before:transition-opacity hover:before:opacity-100;
+    @apply after:absolute after:inset-0 after:rounded-xl;
+    @apply after:border-b-2 after:border-accent-gold/30;
+  }
+
+  .horse-placeholder {
+    @apply relative aspect-video bg-brg-900/50 rounded-lg;
+    @apply flex items-center justify-center text-silver-400;
+    @apply before:absolute before:inset-0 before:bg-gradient-to-br;
+    @apply before:from-brg-800/20 before:to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} 
